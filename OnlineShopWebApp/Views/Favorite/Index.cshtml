@@ -1,0 +1,56 @@
+﻿@model List<Product_ViewModel>
+@{
+    ViewData["Title"] = "Список продуктов в избранном";
+}
+
+<div class="text-center">
+    <h1 class="display-5">Список продуктов в избранном</h1>
+    
+</div>
+<div class="row g-10">
+    @foreach (var product in Model)
+    {
+        <div class="col-3 card shadow">
+            <h5></h5>
+            <img class="card-img-top text-sm-right" src="image/@product.Images">
+            <div class="card-body ">
+                <a stile="color:black" 
+                       asp-area="" 
+                       asp-controller="Product" 
+                       asp-action="Index" 
+                       asp-route-productId="@product.Id">
+                    <h5>№@product.CodeNumber</h5>
+                </a>
+                <h5>@product.Cost руб</h5>
+                <div class="row">
+                    <a class="btn btn-outline-dark text-nowrap btn-sm mx-1 my-1"
+                       asp-area="" 
+                       asp-controller="Comparison" 
+                       asp-action="Add" 
+                       asp-route-productId="@product.Id"
+                       role="button">
+                        В сравнение
+                    </a>
+                    <p >   </p>
+                    <a class="btn btn-outline-dark text-nowrap btn-sm mx-1 my-1"
+                       asp-area="" 
+                       asp-controller="Cart" 
+                       asp-action="AddProduct" 
+                       asp-route-productId="@product.Id"
+                       role="button">
+                        <img src="/image/cartAdd.svg" width="20" height="20">
+                    </a>
+                    <a class="btn btn-outline-danger text-nowrap btn-sm mx-1 my-1"
+                       asp-area="" 
+                       asp-controller="Favorite" 
+                       asp-action="Remove" 
+                       asp-route-productId="@product.Id"
+                       role="button">
+                        <img src="/image/favoriteRemove.svg" width="20" height="20">
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>

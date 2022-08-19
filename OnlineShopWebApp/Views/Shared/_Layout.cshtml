@@ -1,0 +1,29 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head >
+    @Html.Partial("_Favicons")
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - @MyConstant.NameOrganization</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css"/>
+</head>
+<body class="bg-image"
+      style="background-image: url('/image/Back_picture_with_drawings_1.svg'); background-repeat: no-repeat; background-attachment: fixed; background-position: top right; background-size: 25%;">
+@await Html.PartialAsync("Header")
+<div class="container">
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+</div>
+@await Html.PartialAsync("Footer")
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@RenderSection("Scripts", required: false)
+</body>
+</html>
+@await Html.PartialAsync("_ValidationScriptsPartial")

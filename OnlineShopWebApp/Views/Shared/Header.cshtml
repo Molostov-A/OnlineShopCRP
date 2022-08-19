@@ -1,0 +1,42 @@
+﻿<link rel="stylesheet" href="/css/font-glyphicons.css">
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <div class="d-flex justify-content-start input-group col-3 input-group-sm small ">
+                <div class="input-group-prepend">
+                    <button class="btn btn-outline-secondary " type="button" aria-label="search">
+                        <img src="/image/лупа 1.svg" width="14" height="14" />
+                    </button>
+                </div>
+                <input type="text" class="form-control rounded-right" placeholder="Поиск" aria-describedby="inputGroupPrepend3" required>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Каталог проектов</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Admin" asp-controller="Home" asp-action="Index">Админ</a>
+                    </li>
+                </ul>
+            </div>
+            <a class="btn btn-link" asp-area="" asp-controller="Favorite" asp-action="Index">
+                <img src="/image/favorite.svg" width="20" height="20">
+                @await Component.InvokeAsync("CalcFavoriteProductCount")
+            </a>
+            <a class="btn btn-link" asp-area="" asp-controller="Comparison" asp-action="Index">
+                <img src="/image/comparison.svg" width="20" height="20">
+                @await Component.InvokeAsync("CalcComparisonProductCount")
+            </a>
+            <a class="btn btn-link" asp-area="" asp-controller="Cart" asp-action="Index">
+                <img src="/image/icon_basket.svg" width="20" height="20">
+                @await Component.InvokeAsync("Cart")
+            </a>
+            <a class="btn btn-link" asp-area="" asp-controller="User" asp-action="Index"><img src="/image/account.svg" width="20" height="20"></a>
+        </div>
+    </nav>
+</header>

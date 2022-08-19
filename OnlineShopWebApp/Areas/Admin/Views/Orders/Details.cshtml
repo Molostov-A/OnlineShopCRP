@@ -1,0 +1,109 @@
+﻿@model Order_ViewModels
+@{
+    ViewData["Title"] = "Подробности заказа";
+}
+
+<div class="container">
+    <div class="row">
+        @await Html.PartialAsync("MenuAdminPanel")
+        <div class="col">
+            <div class="container">
+
+                <div class="text-center">
+                    <h3 class="display-5">Заказ №@Model.Id</h3>
+                    <p></p>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="text-center col-3 ">Фамилия:</div>
+                        <div class="col-9">
+                            <p>@Model.UserDeleveryInfo.Surname</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3  text-center">Имя:</div>
+                        <div class="col-9">
+                            <p>@Model.UserDeleveryInfo.Firstname</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 text-center">Отчество:</div>
+                        <div class="col-9">
+                            <p>@Model.UserDeleveryInfo.Secondname</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3  text-center">Контактный телефон:</div>
+                        <div class="col-9">
+                            <p>@Model.UserDeleveryInfo.Phone</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3  text-center">Электронная почта:</div>
+                        <div class="col-9">
+                            <p>@Model.UserDeleveryInfo.Email</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 text-center">Комментарий:</div>
+                        <div class="col-9">
+                            <p>@Model.UserDeleveryInfo.Commentary</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 font-weight-bold">Состав заказа:</div>
+                    </div>
+                        @foreach (var prod in Model.CartItems)
+                        {
+                            <div class="row">
+                                <div class="col-3  text-center"></div>
+                                <div class="col-4"><img class="card-img-top " src="/image/@prod.Product.Images" width="200"/></div>
+                                
+                            </div>
+                            <div class="row">
+                            <div class="col-3  text-center">Количество типов:</div>
+                                <div class="col-9"> @prod.Count</div> 
+                            </div>  
+                        }
+                    </div>   
+                    <div class="row">
+                        <div class="col-3  font-weight-bold">Общая стоймость заказа:</div>
+                        <div class="col-9  font-weight-bold">@Model.FullCost()</div>
+                    </div> 
+                    <p></p>
+                    <div class="row">
+                        <div class="col-3 text-center  font-weight-bold">Статус:</div>
+                        <form class="form-inline" method="post" asp-area="Admin" asp-controller="Orders" asp-action="Details">
+                            <div class="col-9">
+                                <div class="row">
+                                    <input type="hidden" value="@Model.Id" name="Id" asp-for="Id"/>
+                                    <select class="custom-select" name="Status" asp-for="Status"
+                                            class="form-control" 
+                                            asp-items="Html.GetEnumSelectList<OrderStatus_ViewModel>()">
+                                        <option selected>@Model.Status</option>
+                                    </select>
+                                </div>
+                                <p></p>
+                                <div class="row">
+                                    <div>
+                                        <button type="submit"
+                                                class="btn btn-outline-dark text-nowrap"
+                                                asp-area="Admin"
+                                                asp-controller="Orders"
+                                                asp-action="SaveDetails"
+                                                role="button">Сохранить изменения</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    

@@ -1,0 +1,40 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Личный кабинет";
+}
+
+<div class="container">
+    <h3 class="display-5 Title_sile">Личный кабинет</h3>
+</div>
+
+<p></p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+            <img class="card-img-top img-fluid" src="/image/all-foto.jpg" />
+        </div>
+
+        <div class="col">
+            <p>Логин: @Model.Login</p>
+            <p>Фамилия: @Model.Surname</p>
+            <p>Имя: @Model.Firstname</p>
+            <p>Отчество: @Model.Secondname</p>
+            <p>Возраст: @Model.Age</p>
+            <p>Email: @Model.Email</p>
+            <p>Роль: @Model.RoleName</p>
+        </div>
+    </div>
+
+</div>
+
+<p></p>
+<div class="container g-10">
+    <a class="btn btn-outline-dark text-nowrap btn-sm mx-1 my-1" href="#" role="button">Сравнительная таблица</a>
+    <a class="btn btn-outline-dark text-nowrap btn-sm mx-1 my-1" asp-area="" asp-controller="Cart" asp-action="Index" role="button">Корзина</a>
+    <a class="btn btn-outline-dark text-nowrap btn-sm mx-1 my-1" href="#" role="button">Купленные проекты</a>
+    <a class="btn btn-outline-dark text-nowrap btn-sm mx-1 my-1" asp-area="" asp-controller="Login" asp-action="Exit" role="button">Выйти</a>
+</div>
+
+
+

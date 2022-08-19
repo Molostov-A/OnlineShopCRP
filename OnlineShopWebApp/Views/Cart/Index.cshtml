@@ -1,0 +1,93 @@
+﻿
+@model Cart_ViewModel;
+@{
+    ViewData["Title"] = "Корзина покупок";
+}
+
+
+<div class="text-center">
+    <h1 class="display-5 Title_sile">Корзина покупок</h1>
+    <p></p>
+</div>
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-bordered caption-top">
+            <thead>
+                <tr>
+                    <th scope="col" class="align-top">#</th>
+                    <th scope="col" class="align-top">Название проекта</th>
+                    <th scope="col" class="align-top">Изображение</th>
+                    <th scope="col" class="align-top">Габариты (м)</th>
+                    <th scope="col" class="align-top">Площадь (м2)</th>
+                    <th scope="col" class="align-top">Стоймость (руб)</th>
+                    <th scope="col" class="align-top">Количество (типов)</th>
+                    <th scope="col" class="align-top">Общая стоймость (руб)</th>
+                    <th scope="col"> </th>
+                </tr>
+            </thead>
+            @if (Model.CartItems.Count != 0)
+            {
+                <tbody>
+                    @for (int i = 0; i < Model.CartItems.Count; i++)
+                    {
+                        <tr>
+                            <th scope="row">@(i+1)</th>
+                            <td>№ @Model.CartItems[i].Product.CodeNumber @Model.CartItems[i].Product.Description</td>
+                            <td> <img class="card-img-top " src="/image/@Model.CartItems[i].Product.Images" width="200" /></td>
+                            <td>@Model.CartItems[i].Product.Length х @Model.CartItems[i].Product.Width</td>
+                            <td>@Model.CartItems[i].Product.Square</td>
+                            <td>@Model.CartItems[i].Product.Cost</td>
+                            <td>@Model.CartItems[i].Count</td>
+                            <td>@(Model.CartItems[i].Count*Model.CartItems[i].Product.Cost)</td>
+                            <td>
+                                <div class="container">
+                                    <div class="d-grid gap-2">
+                                        <a class="btn btn-outline-dark text-nowrap mx-1 my-1"
+                                           asp-area=""
+                                           asp-controller="Cart"
+                                           asp-action="AddProduct"
+                                           asp-route-productId="@Model.CartItems[i].Product.Id"
+                                           role="button">
+                                            +
+                                        </a>
+                                        <a class="btn btn-outline-dark text-nowrap mx-auto my-1"
+                                           asp-area="" asp-controller="Cart"
+                                           asp-action="ReduceDuplicateProduct"
+                                           asp-route-productId="@Model.CartItems[i].Product.Id"
+                                           role="button">
+                                            -
+                                        </a>
+                                        <a class="btn btn-outline-dark text-nowrap mx-1 my-1 border-1"
+                                           asp-area="" asp-controller="Cart"
+                                           asp-action="DeleteProduct"
+                                           asp-route-productId="@Model.CartItems[i].Product.Id"
+                                           role="button">
+                                            Удалить
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                <th scope="row"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Итого: @Model.FullSumm()</td>
+                <td></td>
+                </tbody>
+            }
+            else
+            {
+                <td colspan="9">Проекты отсутствуют</td>
+            }
+
+        </table>
+    </div>
+    <a class="btn btn-outline-dark text-nowrap btn-sm mx-1 my-1" asp-area="" asp-controller="Order" asp-action="Index"  role="button">Оформить заказ</a>
+    <a class="btn btn-outline-dark text-nowrap btn-sm mx-1 my-1" asp-area="" asp-controller="Home" asp-action="Index" role="button">Продолжить покупки</a>
+    <a class="btn btn-outline-dark text-nowrap btn-sm mx-1 my-1" asp-area="" asp-controller="Cart" asp-action="Clear" role="button">Очистить корзину</a>
+</div>

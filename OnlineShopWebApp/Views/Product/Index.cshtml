@@ -1,0 +1,26 @@
+﻿@model Product_ViewModel
+@{
+    ViewData["Title"] = @$"{Model.CodeNumber} - {Model.Description}";
+}
+
+<div class="text-center">
+    <h1 class="display-5">@Model.CodeNumber - @Model.Description</h1>
+</div>
+
+<div class="row">
+    <div class="col-9">
+        <img class="card-img-top" src="/image/@Model.Images">
+    </div>
+    <div class="col">
+        <div class="card-body">
+            <h6>Общая площадь: @Model.Square м.кв.</h6>
+            <h6>Габариты: @Model.Length х @Model.Width м</h6>
+            <h6>Стоймость проекта: @Model.Cost руб</h6>
+            <a class="btn btn-outline-dark text-nowrap btn-sm mx-1 my-1" asp-area="" asp-controller="Cart" asp-action="AddProduct" asp-route-productId="@Model.Id" role="button">В корзину</a>
+            <h6></h6>
+            <a class="btn btn-outline-dark text-nowrap btn-sm mx-1 my-1" href="#" role="button">В cравнение</a>
+            <a class="btn btn-outline-dark text-nowrap btn-sm mx-1 my-1" asp-area="" asp-controller="Home" asp-action="Index" role="button">Продолжить покупки</a>
+        </div>
+    </div>
+</div>
+

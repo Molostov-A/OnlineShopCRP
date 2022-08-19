@@ -1,0 +1,139 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Пользователь " + @Model.Login;
+}
+
+<div class="container">
+    <div class="row">
+        @await Html.PartialAsync("MenuAdminPanel")
+        <div class="col">
+            <div class="container">
+                <div class="col-10 container">
+                    <div class="container">
+                        <h3 class="display-5 Title_sile text-center">Пользователь: @Model.Login</h3>
+                        <div class="row">
+                            <div class="col-2 align-top">
+                                Логин:
+                            </div>
+                            <div class="col align-top">
+                                @Model.Login
+                            </div>
+                        </div>
+                        <br/>
+
+                        <div class="row">
+                            <div class="col-2 align-top">
+                                Фамилия:
+                            </div>
+                            <div class="col align-top">
+                                @Model.Surname
+                            </div>
+                        </div>
+                        <br/>
+
+                        <div class="row">
+                            <div class="col-2 align-top">
+                                Отчество:
+                            </div>
+                            <div class="col align-top">
+                                @Model.Secondname
+                            </div>
+                        </div>
+                        <br/>
+
+                        <div class="row">
+                            <div class="col-2 align-top">
+                                Возраст:
+                            </div>
+                            <div class="col align-top">
+                                @Model.Age 
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-2 align-top">
+                                Email:
+                            </div>
+                            <div class="col align-top">
+                                @Model.Email
+                            </div>
+                        </div>
+                        <br/>
+
+                        <div class="row">
+                            <div class="col-2 align-top">
+                                Телефон:
+                            </div>
+                            <div class="col align-top">
+                                @Model.Phone
+                            </div>
+                        </div>
+                        <br/>
+
+                        <div class="row">
+                            <div class="col-2 align-top">
+                                Роль:
+                            </div>
+                            <div class="col align-top">
+                                @Model.RoleName
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-2 align-top">
+                                Пароль:
+                            </div>
+                            <div class="col align-top">
+                                @Model.Password
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Действия
+                            </button>
+                            <div class="dropdown-menu" aria-labelledy="dropdownMenuButton">
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Users" asp-action="ChangePassword" asp-route-login="@Model.Login">Смена пароля</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Users" asp-action="Edit" asp-route-login="@Model.Login">Редактирование данных</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Users" asp-action="EditRights" asp-route-login="@Model.Login">Права доступа</a>
+                                <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalCenter" href="#">Удалить пользователя</a>
+                            </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Удаление пользователя</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Вы действительно хотите удалить данного пользователя?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Нет</button>
+                                            <a type="button" class="btn btn-outline-dark"
+                                               asp-area="Admin" asp-controller="Users"
+                                               asp-action="Remove"
+                                               asp-route-login="@Model.Login"
+                                               role="button">
+                                                Да, удалить
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Modal -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    

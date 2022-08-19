@@ -1,0 +1,125 @@
+﻿
+@model List<Product_ViewModel>
+@{
+    ViewData["Title"] = "Панель администратора";
+}
+
+<div class="container">
+    <div class="row">
+        @await Html.PartialAsync("MenuAdminPanel")
+        <div class="col-10 container">
+            <div class="container">
+                <h3 class="display-5 Title_sile text-center">Список продуктов</h3>
+                <div class="d-grid gap-2 col-2">
+                    <a class="text-nowrap mx-1 my-1"
+                       asp-area="Admin" asp-controller="Products" 
+                       asp-action="CardNewProduct"
+                       role="button">
+                        Добавить новый продукт
+                    </a>
+                </div>
+                <div></div>
+                <div class="d-grid gap-2 col-2">
+                    <a class="text-nowrap mx-1 my-1"
+                       asp-area="Admin" asp-controller="Products" 
+                       asp-action="CardNewProductsDefoult"
+                       role="button">
+                        Добавить продукты по умолчанию
+                    </a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered caption-top">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="align-top small">№</th>
+                            <th scope="col" class="align-top small">Название проекта</th>
+                            <th scope="col" class="align-top small">Изображение</th>
+                            <th scope="col" class="align-top small">Габариты (м)</th>
+                            <th scope="col" class="align-top small">Площадь (м2)</th>
+                            <th scope="col" class="align-top small">Стоймость (руб)</th>
+                            <th scope="col" class="align-top small"> </th>
+                            <th scope="col" class="align-top small"> </th>
+                        </tr>
+                        </thead>
+                        @if (Model.Count != 0)
+                        {
+                            <tbody>
+                            @for (int i = 0; i < Model.Count; i++)
+                            {
+                                <tr>
+                                    <th class="small" scope="row">@(i + 1)</th>
+                                    <td class="small">@Model[i].CodeNumber . @Model[i].Description</td>
+                                    <td class="small"> <img class="card-img-top " src="/image/@Model[i].Images" width="200"/></td>
+                                    <td class="small">@Model[i].Length х @Model[i].Width</td>
+                                    <td class="small">@Model[i].Square</td>
+                                    <td class="small">@Model[i].Cost</td>
+                                    <td class="small">
+                                        <div class="d-grid gap-2">
+                                            <a class="text-nowrap mx-1 my-1"
+                                               asp-area="Admin" asp-controller="Products" 
+                                               asp-action="CardUpdate"
+                                               asp-route-productId="@Model[i].Id"
+                                               role="button">
+                                                Редактировать
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td class="small">
+
+                                        <div class="d-grid gap-2">
+                                            <a class="text-nowrap mx-1 my-1 "  data-toggle="modal" data-target="#removeModal_@i" href="removeModal_@i">
+                                                <a1>Удалить</a1>
+                                            </a>
+                                        </div>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="removeModal_@i" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle_@i" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalCenterTitle_@i">Удаление продукта</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                        <div class="modal-body">
+                                                            Вы действительно хотите удалить данный проект?
+                                                        </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Нет</button>
+                                                        <a type="button" class="btn btn-outline-dark"
+                                                           asp-area="Admin" asp-controller="Products"
+                                                           asp-action="Delete"
+                                                           asp-route-productId="@Model[i].Id"
+                                                           role="button">
+                                                            Да, удалить
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                </tr>
+
+                            }
+                            </tbody>
+                        }
+                        else
+                        {
+                            <td colspan="9">Проекты отсутствуют</td>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
