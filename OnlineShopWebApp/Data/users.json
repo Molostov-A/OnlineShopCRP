@@ -34,5 +34,17 @@
     "Password": "11111111",
     "RoleName": "Покупатель",
     "RoleId": "674b2f41-3173-4a0c-8f7e-4043876b8ee3"
+  },
+  {
+    "Login": "Alexander",
+    "Firstname": null,
+    "Secondname": null,
+    "Surname": null,
+    "Phone": null,
+    "Age": 0,
+    "Email": null,
+    "Password": "11111111",
+    "RoleName": "Покупатель",
+    "RoleId": "674b2f41-3173-4a0c-8f7e-4043876b8ee3"
   }
 ]
