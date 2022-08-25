@@ -6,6 +6,7 @@ In this solution, there are blanks for:
 - business logic of placing an order for delivery;
 - works with creation, modification, deletion of product information;
 - work with the database.
+
 Notes:
 1. The solution is based on the project ASP.NET Core MVC.
 2. The MS SQL Server database is used as a data warehouse, interaction with which is carried out using the Entity Framework. (Partially translated from storage to json)
@@ -16,6 +17,7 @@ Notes:
 -   бизнес-логики размещения заказа для доставки;
 -   работы с созданием, изменением, удалением информации о продукте;
 -   работы с базой данных.
+
 Примечания:
 1. В основе решения лежит проект ASP.NET Core MVC. 
 2. В качестве хранилища данных используется база данных MS SQL Server, взаимодействие с которой осуществляется с помощью Entity Framework. (Частично переведено с хранения на json)
