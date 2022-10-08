@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using OnlineShop.Common.Interface;
+using OnlineShop.Common;
 using OnlineShop.Db.Interfase;
+using OnlineShop.Db.Models;
 using OnlineShopWebApp.Models;
 
 namespace OnlineShopWebApp.Controllers
@@ -8,6 +11,7 @@ namespace OnlineShopWebApp.Controllers
     public class HomeController : Controller
     {
         private readonly IProductRepository _productRepository;
+        private readonly IWorkWithData _productRepositoryJson = new JsonWorkWithData("projects_for_sale");
         public HomeController(IProductRepository productRepository)
         {
             _productRepository = productRepository;
@@ -16,6 +20,15 @@ namespace OnlineShopWebApp.Controllers
         public IActionResult Index()
         {
             var productsDb = _productRepository.GetAll();
+            if (productsDb.Count == 0)
+            {
+                var productsJson = _productRepositoryJson.Read<List<Product>>();
+                foreach (var productJson in productsJson)
+                {
+                    _productRepository.AddNew(productJson);
+                }
+                productsDb = _productRepository.GetAll();
+            }
             var productsViewModels = new List<Product_ViewModel>();
             foreach (var product in productsDb)
             {
