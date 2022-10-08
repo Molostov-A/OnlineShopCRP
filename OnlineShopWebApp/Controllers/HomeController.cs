@@ -22,20 +22,20 @@ namespace OnlineShopWebApp.Controllers
             var productsDb = _productRepository.GetAll();
             if (productsDb.Count == 0)
             {
-                AddListProductsDefoult(productsDb);
+                productsDb = AddListProductsDefoult();
             }
             var productsViewModels = MappingToViewModels(productsDb);
             return View(productsViewModels);
         }
 
-        private void AddListProductsDefoult(List<Product> productsDb)
+        private List<Product> AddListProductsDefoult()
         {
             var productsJson = _productRepositoryJson.Read<List<Product>>();
             foreach (var productJson in productsJson)
             {
                 _productRepository.AddNew(productJson);
             }
-            productsDb = _productRepository.GetAll();
+            return _productRepository.GetAll();
         }
 
         private List<Product_ViewModel> MappingToViewModels(List<Product> productsDb)
